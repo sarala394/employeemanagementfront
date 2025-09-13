@@ -10,7 +10,47 @@
         <!-- Divider -->
 
         <v-row>
-          <!-- Conatct No -->
+          <!-- Labour Id -->
+          <v-col lg="6" cols="12">
+            <label>Employee Id</label>
+            <div class="mt-2"></div>
+            <v-text-field
+              class="custom-input"
+              variant="none"
+              v-model="form.employee_ref_id"
+              :rules="[required]"
+              readonly
+            >
+            </v-text-field>
+          </v-col>
+
+          <!-- Labour Name -->
+          <v-col lg="6" cols="12">
+            <label>Name</label>
+            <div class="mt-2"></div>
+            <v-text-field
+              class="custom-input"
+              variant="none"
+              v-model="form.name"
+              :rules="[required]"
+            >
+            </v-text-field>
+          </v-col>
+
+          <!-- Contact -->
+          <v-col lg="6" cols="12">
+            <label>Email</label>
+            <div class="mt-2"></div>
+            <v-text-field
+              class="custom-input"
+              variant="none"
+              v-model="form.email"
+              :rules="[required]"
+            >
+            </v-text-field>
+          </v-col>
+
+          <!-- Hourly Rate -->
           <v-col lg="6" cols="12">
             <label>Contact</label>
             <div class="mt-2"></div>
@@ -31,10 +71,27 @@
               class="custom-input"
               variant="solo"
               v-model="form.designation"
-              readonly
+              :items="['Manager', 'Senior', 'Associate', 'Intern']"
+              label="Select Designation"
+              required
             ></v-select>
           </v-col>
+
+          <!-- Status -->
+          <v-col lg="6" cols="12">
+            <label>Status</label>
+            <div class="mt-2"></div>
+            <v-text-field
+              class="custom-input"
+              variant="none"
+              v-model="form.status"
+              :rules="[required]"
+              readonly
+            >
+            </v-text-field>
+          </v-col>
         </v-row>
+
         <!-- Divider -->
         <v-divider class="my-4">
           <strong>Monthly Salary Package </strong>
@@ -142,9 +199,15 @@
 export default {
   data() {
     return {
-      showloader: false,
       isFormValid: false,
-      form: {},
+      showloader: false,
+      form: {
+        status: "Active",
+        monthly_salary_package: 0,
+        monthly_tax_value: 0,
+        net_salary: 0,
+        yearly_increasing_bonus: 0,
+      },
     };
   },
 
@@ -169,6 +232,11 @@ export default {
   },
 
   methods: {
+    generateLabourId() {
+      const randomId = "EPF-" + Math.floor(100000 + Math.random() * 9000);
+      this.form.employee_ref_id = randomId;
+    },
+
     monthlyTaxValue() {
       const monthlySalary = parseFloat(this.form.monthly_salary_package) || 0;
       let monthlyTax = 0;
@@ -224,6 +292,13 @@ export default {
 
     closeForm() {
       this.$emit("closeForm", false);
+    },
+
+    // Open Edit Form
+    openEditForm(item) {
+      this.selectedItem = item;
+      this.showEditForm = true;
+      // console.log(this.selectedItem);
     },
   },
 };

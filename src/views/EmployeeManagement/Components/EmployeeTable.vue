@@ -49,6 +49,7 @@
               <div v-else-if="header.value === 'designation'">
                 {{ props.item.designation }}
               </div>
+
               <!-- Status Updates -->
               <div v-else-if="header.value === 'status'">
                 <v-btn
@@ -59,6 +60,7 @@
                   {{ props.item.status }}
                 </v-btn>
               </div>
+
               <!-- Edit & Delete Button -->
               <div
                 v-else-if="header.value === 'action'"
@@ -103,7 +105,7 @@
     </v-dialog>
 
     <!-- edit Employee Form -- dialog -->
-    <v-dialog v-model="showEditForm" max-width="500px" persistent="">
+    <v-dialog v-model="showEditForm" max-width="900px" persistent="">
       <v-card>
         <v-card-title
           class="d-flex justify-space-between align-center add_form"
@@ -111,7 +113,7 @@
           Edit User
         </v-card-title>
         <v-card-text>
-          <EditEmployee :selectedItem="selectedItem"  @closeModal="closeEditForm"/>
+          <Add :selecteItem="selectedItem" @closeModal="closeEditForm" />
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -137,11 +139,13 @@
 <script>
 import AddEmployee from "@/views/EmployeeManagement/Components/AddEmployee.vue";
 import EditEmployee from "@/views/EmployeeManagement/Components/EditEmployee.vue";
+import Add from "@/views/EmployeeManagement/Components/Add.vue";
 
 export default {
   components: {
     AddEmployee,
     EditEmployee,
+    Add,
   },
 
   data() {
@@ -166,6 +170,10 @@ export default {
           designation: "sdvf",
           status: "Active",
           action: "edit",
+          monthly_salary_package: 150000,
+          monthly_tax_value: 7500,
+          net_salary: 142000,
+          yearly_increasing_bonus: 7500,
         },
       ],
     }; // end return
@@ -185,6 +193,12 @@ export default {
     openEditForm(item) {
       this.selectedItem = item;
       this.showEditForm = true;
+      // console.log(this.selectedItem);
+    },
+
+    // Close Edit Form
+    closeEditForm(data) {
+      this.showEditForm = false;
     },
   },
 };
