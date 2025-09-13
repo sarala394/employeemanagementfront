@@ -1,0 +1,150 @@
+.employee_management {
+  text-transform: none;
+  .v-btn {
+    background-color: #274472;
+    color: white;
+  }
+  .employee-table {
+    background-color: #f0f4f6; // background color of the Table
+
+    .text-right {
+      border-radius: 5px;
+      font-weight: bold;
+      text-transform: none;
+      height: 40px;
+    }
+    .add_Newbutton {
+      background-color: #274472;
+      font-weight: 900;
+      font-size: 15px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #ffffff;
+      text-transform: none;
+    }
+    .search_box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      .sbox {
+        width: 150;
+        height: 24;
+        top: 223px;
+        left: 233px;
+        border-radius: 5px;
+        opacity: 1;
+        background-color: #fdffff;
+      }
+    }
+    .edit_btn {
+      width: 33;
+      height: 14;
+      border-radius: 5px;
+      background-color: #3b71ca;
+      color: white;
+      text-transform: none;
+    }
+    .delete_btn {
+      width: 33;
+      height: 14;
+      border-radius: 5px;
+      background-color: red;
+      color: white;
+      text-transform: none;
+    }
+    .status_chip {
+      width: 46;
+      height: 14;
+      opacity: 1;
+      border-radius: 8px;
+    }
+  }
+
+  .v-col {
+    display: flex;
+    justify-content: left;
+
+    .v-text-field {
+      width: 100%;
+
+      .v-field {
+        border-radius: 10px !important;
+        background-color: #fdffff;
+        height: 50px;
+      }
+    }
+  }
+}
+
+.header_employee {
+  background-color: #f0f4f6;
+  border: 1px solid #d3e8f2;
+}
+.title_sub {
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.addemployeeform {
+  text-transform: none;
+  background-color: #f0f4f6;
+  .custom-input .v-input__control {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    overflow: visible;
+  }
+
+  .add_button {
+    font-weight: 900;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    background-color: #274472;
+    color: #ffffff;
+    text-transform: none;
+    .text {
+      font-family: Lato;
+      font-weight: 900;
+      font-style: Regular;
+      font-size: 15px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      // color: #ffffff;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.assign_labour {
+  .assign_labour_card {
+    background-color: #f4eded;
+    .custom-data-table {
+      background-color: #f4eded;
+      border: 1px solid #ddd;
+    }
+  }
+  .add_newbtn {
+    background-color: #166706;
+    text-transform: none;
+    color: white;
+  }
+  .Lassign_submit_btn {
+    background-color: #3b71ca;
+    text-transform: none;
+    color: white;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    width: 200px;
+    border-radius: 8px;
+    height: 38;
+  }
+}
+
+.add_form {
+  background-color: #274472;
+  color: white;
+}
