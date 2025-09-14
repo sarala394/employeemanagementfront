@@ -1,4 +1,7 @@
 <template>
+  <v-container class="header_employee">
+    <h2 class="title_sub">Report Management</h2>
+  </v-container>
   <div class="employee_management">
     <v-container class="employee-table">
       <div class="labour_management">
