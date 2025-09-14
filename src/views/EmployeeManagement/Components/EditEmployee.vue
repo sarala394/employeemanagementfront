@@ -118,7 +118,7 @@
             <v-btn
               block
               class="add_button"
-              @click="storeLabour()"
+              @click="updateEmployee()"
               :loading="showloader"
               :disabled="!isFormValid"
             >
@@ -139,6 +139,8 @@
 </template>
 
 <script>
+import EmployeeApi from "@/Api/Modules/employees.js";
+
 export default {
   data() {
     return {
@@ -213,15 +215,20 @@ export default {
       this.form.yearly_increasing_bonus = parseFloat(yearlyBonus.toFixed(2));
     },
 
-    required(value) {
-      return !!value || "This field is required";
+    // Update employee
+    async updateEmployee() {
+      this.showloader = true;
+      await EmployeeApi.updateEmployee(this.form.id, this.form)
+        .then(() => {
+          this.showloader = false;
+          this.$emit("closeForm", false);
+        })
+        .catch(() => {
+          this.showloader = false;
+        });
     },
 
-    storeLabour() {
-      // Add your store labour logic here
-      console.log("Storing labour data:", this.form);
-    },
-
+    //close form
     closeForm() {
       this.$emit("closeForm", false);
     },

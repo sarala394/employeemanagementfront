@@ -1,10 +1,11 @@
 .employee_management {
-  text-transform: none;
+  text-transform: capitalize;
   .v-btn {
     background-color: #274472;
     color: white;
   }
   .employee-table {
+    text-transform: capitalize;
     background-color: #f0f4f6; // background color of the Table
 
     .text-right {
@@ -41,7 +42,7 @@
       width: 33;
       height: 14;
       border-radius: 5px;
-      background-color: #3b71ca;
+      background-color: #274472;
       color: white;
       text-transform: none;
     }
@@ -118,29 +119,18 @@
   }
 }
 
-.assign_labour {
-  .assign_labour_card {
-    background-color: #f4eded;
-    .custom-data-table {
-      background-color: #f4eded;
-      border: 1px solid #ddd;
+.employee-dashboard {
+  .mini-card {
+    background-color: #43a49b;
+    color: #ffffff;
+    .v-card-title {
+      font-weight: 900;
+      font-size: 35px;
     }
-  }
-  .add_newbtn {
-    background-color: #166706;
-    text-transform: none;
-    color: white;
-  }
-  .Lassign_submit_btn {
-    background-color: #3b71ca;
-    text-transform: none;
-    color: white;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    width: 200px;
-    border-radius: 8px;
-    height: 38;
+    .v-card-subtitle {
+      font-weight: 700;
+      font-size: 20px;
+    }
   }
 }
 

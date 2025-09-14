@@ -10,7 +10,7 @@
         <!-- Divider -->
 
         <v-row>
-          <!-- Labour Id -->
+          <!-- employee Id -->
           <v-col lg="6" cols="12">
             <label>Employee Id</label>
             <div class="mt-2"></div>
@@ -24,7 +24,7 @@
             </v-text-field>
           </v-col>
 
-          <!-- Labour Name -->
+          <!--  Name -->
           <v-col lg="6" cols="12">
             <label>Name</label>
             <div class="mt-2"></div>
@@ -50,7 +50,7 @@
             </v-text-field>
           </v-col>
 
-          <!-- Hourly Rate -->
+          <!-- contact -->
           <v-col lg="6" cols="12">
             <label>Contact</label>
             <div class="mt-2"></div>
@@ -175,7 +175,7 @@
             <v-btn
               block
               class="add_button"
-              @click="storeLabour()"
+              @click="storeEmployee()"
               :loading="showloader"
               :disabled="!isFormValid"
             >
@@ -196,6 +196,8 @@
 </template>
 
 <script>
+import EmployeeApi from "@/Api/Modules/employees.js";
+
 export default {
   data() {
     return {
@@ -232,6 +234,7 @@ export default {
       this.form.employee_ref_id = randomId;
     },
 
+    // calculate monthlyTaxValue
     monthlyTaxValue() {
       const monthlySalary = parseFloat(this.form.monthly_salary_package) || 0;
       let monthlyTax = 0;
@@ -250,6 +253,7 @@ export default {
       this.form.monthly_tax_value = parseFloat(monthlyTax.toFixed(2));
     },
 
+    // calculate monthly NetSalary
     monthlyNetSalary() {
       const monthlySalary = parseFloat(this.form.monthly_salary_package) || 0;
       const monthlyTax = parseFloat(this.form.monthly_tax_value) || 0;
@@ -258,6 +262,7 @@ export default {
       this.form.net_salary = parseFloat(netSalary.toFixed(2));
     },
 
+    // calculate yearly bonus
     yearlyBonus() {
       const designation = this.form.designation;
       const monthlySalary = parseFloat(this.form.monthly_salary_package) || 0;
@@ -280,11 +285,20 @@ export default {
       return !!value || "This field is required";
     },
 
-    storeLabour() {
-      // Add your store labour logic here
-      console.log("Storing labour data:", this.form);
+    // add new employee
+    async storeEmployee() {
+      this.showloader = true;
+      await EmployeeApi.storeEmployee(this.form)
+        .then(() => {
+          this.showloader = false;
+          this.$emit("closeForm", false);
+        })
+        .catch(() => {
+          this.showloader = false;
+        });
     },
 
+    // close form
     closeForm() {
       this.$emit("closeForm", false);
     },

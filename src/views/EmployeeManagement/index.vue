@@ -16,8 +16,7 @@
             style="background-color: #fdffff; height: 50px"
             class="elevation-3 sbox"
             clearable
-            type="tel"
-            :rules="phoneRules"
+            type="text"
           ></v-text-field>
         </v-col>
 
@@ -27,10 +26,9 @@
             rounded="xl"
             dense
             style="text-transform: capitalize; height: 45px"
-            @click="searchPhoneNumber()"
             :disabled="!isValidPhoneNumber"
+            @click="getEmployees()"
           >
-            <v-icon left>mdi-phone</v-icon>
             Search Phone
           </v-btn>
         </v-col>
@@ -39,37 +37,45 @@
   </div>
 
   <!-- Employee Main Data Table -->
-  <div><EmployeeTable /></div>
+  <div><EmployeeTable :employees="employees" :loading="loading" /></div>
 </template>
 <script>
 import EmployeeTable from "@/views/EmployeeManagement/Components/EmployeeTable.vue";
+import EmployeeApi from "@/Api/Modules/employees.js";
 
 export default {
   data() {
     return {
-      //   labours: [],
-      //   loading: false,
-      //   searchedData: null,
+      employees: [],
+      loading: false,
+      searchedData: "",
     };
   },
   components: {
     EmployeeTable,
   },
 
-  //   async created() {
-  //     await this.getLabours();
-  //   },
-  //   methods: {
-  //     // // Get All Labours Info or Get by Search Filter
-  //     // async getLabours() {
-  //     //   this.loading = true;
-  //     //   const payload = {
-  //     //     search_data: this.searchedData,
-  //     //   };
-  //     //   const res = await LabourApi.getLabours(payload);
-  //     //   this.labours = res.data.data;
-  //     //   this.loading = false;
-  //     // },
-  //   },
+  async created() {
+    await this.getEmployees();
+  },
+  methods: {
+    // Get All employees Info or Get by Search Filter
+    async getEmployees() {
+      this.loading = true;
+      const payload = {
+        search_data: this.searchedData,
+      };
+      const res = await EmployeeApi.getEmployees(payload);
+      this.employees = res.data.data;
+      this.loading = false;
+    },
+  },
+
+  computed: {
+    isValidPhoneNumber() {
+      // Check if searchedData is not empty and only contains numbers
+      return this.searchedData !== "" && /^[0-9]+$/.test(this.searchedData);
+    },
+  },
 };
 </script>

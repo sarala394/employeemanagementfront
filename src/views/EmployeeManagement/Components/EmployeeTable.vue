@@ -21,7 +21,7 @@
           type="image, list-item-two-line"
         >
           <v-data-table
-            :items="items"
+            :items="employees"
             :headers="headers"
             class="table-responsive"
           >
@@ -67,22 +67,12 @@
                 class="d-flex align-center ga-2"
               >
                 <!-- Edit Button -->
-                <v-btn
-                  class="edit_btn"
-                  icon
-                  size="small"
-                  @click="openEditForm(props.item)"
-                >
-                  <v-icon>mdi-pencil-outline</v-icon>
+                <v-btn class="edit_btn" @click="openEditForm(props.item)">
+                  Edit
                 </v-btn>
                 <!-- Delete Button -->
-                <v-btn
-                  class="delete_btn"
-                  icon
-                  size="small"
-                  @click="deleteUser(props.item.id)"
-                >
-                  <v-icon>mdi-trash-can</v-icon>
+                <v-btn class="delete_btn" @click="deleteUser(props.item.id)">
+                  Delete
                 </v-btn>
               </div>
             </template>
@@ -113,7 +103,10 @@
           Edit User
         </v-card-title>
         <v-card-text>
-          <Add :selecteItem="selectedItem" @closeModal="closeEditForm" />
+          <EditEmployee
+            :selecteItem="selectedItem"
+            @closeForm="closeEditForm"
+          />
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -139,13 +132,12 @@
 <script>
 import AddEmployee from "@/views/EmployeeManagement/Components/AddEmployee.vue";
 import EditEmployee from "@/views/EmployeeManagement/Components/EditEmployee.vue";
-import Add from "@/views/EmployeeManagement/Components/Add.vue";
+import EmployeeApi from "@/Api/Modules/employees.js";
 
 export default {
   components: {
     AddEmployee,
     EditEmployee,
-    Add,
   },
 
   data() {
@@ -161,23 +153,13 @@ export default {
         { title: "Status", value: "status" },
         { title: "Action", value: "action" },
       ],
-      items: [
-        {
-          employee_ref_id: "dvfvf",
-          name: "dvf",
-          email: "hbjh@gmail.com",
-          contact: "34234534",
-          designation: "sdvf",
-          status: "Active",
-          action: "edit",
-          monthly_salary_package: 150000,
-          monthly_tax_value: 7500,
-          net_salary: 142000,
-          yearly_increasing_bonus: 7500,
-        },
-      ],
     }; // end return
   }, // end data()
+
+  props: {
+    employees: Array,
+    loading: Boolean,
+  },
 
   methods: {
     openNewEmployeeForm() {
@@ -200,6 +182,19 @@ export default {
     closeEditForm(data) {
       this.showEditForm = false;
     },
+
+    // // delete user
+    // deleteUser(id) {
+    //   this.deleteAlertId = id;
+    //   this.deleteDialog = true;
+    // },
+
+    // confirm popup box
+    // confirmDelete() {
+    //   this.items = this.items.filter((item) => item.id !== this.deleteAlertId);
+    //   this.deleteDialog = false;
+    //   this.deleteAlertId = null;
+    // },
   },
 };
 </script>

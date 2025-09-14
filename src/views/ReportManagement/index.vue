@@ -1,34 +1,15 @@
 <template>
-<div></div>
+  <div><ReportsTable /></div>
 </template>
 <script>
+import ReportsTable from "@/views/ReportManagement/Components/ReportsTable.vue";
 
 export default {
   data() {
-    return {
-    //   labours: [],
-    //   loading: false,
-    //   searchedData: null,
-    };
+    return {};
   },
-//   components: {
-//     LabourTable,
-//   },
-
-//   async created() {
-//     await this.getLabours();
-//   },
-  methods: {
-    // // Get All Labours Info or Get by Search Filter
-    // async getLabours() {
-    //   this.loading = true;
-    //   const payload = {
-    //     search_data: this.searchedData,
-    //   };
-    //   const res = await LabourApi.getLabours(payload);
-    //   this.labours = res.data.data;
-    //   this.loading = false;
-    // },
+  components: {
+    ReportsTable,
   },
 };
 </script>
