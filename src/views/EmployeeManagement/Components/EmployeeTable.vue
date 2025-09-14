@@ -8,7 +8,7 @@
         <!-- Button on the Right -->
         <v-col cols="12" sm="6" md="3" class="text-right">
           <v-btn class="add_Newbutton" @click="openNewEmployeeForm()">
-            Add New Labour
+            Add New Employee
           </v-btn>
         </v-col>
       </v-row>
