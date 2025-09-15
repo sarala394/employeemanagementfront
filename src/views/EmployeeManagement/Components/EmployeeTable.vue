@@ -71,7 +71,10 @@
                   Edit
                 </v-btn>
                 <!-- Delete Button -->
-                <v-btn class="delete_btn" @click="deleteUser(props.item.id)">
+                <v-btn
+                  class="delete_btn"
+                  @click="deleteEmployee(props.item.id)"
+                >
                   Delete
                 </v-btn>
               </div>
@@ -143,8 +146,10 @@ export default {
   data() {
     return {
       showForm: false,
-      showEditForm:false,
+      showEditForm: false,
       selectedItem: {},
+      deleteDialog: false,
+      showloader: false,
       headers: [
         { title: "Employee Ref Id", value: "employee_ref_id" },
         { title: "Employee Name", value: "name" },
@@ -184,18 +189,29 @@ export default {
       this.showEditForm = false;
     },
 
-    // // delete user
-    // deleteUser(id) {
-    //   this.deleteAlertId = id;
-    //   this.deleteDialog = true;
-    // },
+    // // delete emplyee
+    deleteEmployee(id) {
+      this.deleteAlertId = id;
+      this.deleteDialog = true;
+    },
 
-    // confirm popup box
-    // confirmDelete() {
-    //   this.items = this.items.filter((item) => item.id !== this.deleteAlertId);
-    //   this.deleteDialog = false;
-    //   this.deleteAlertId = null;
-    // },
+    // confirm delete
+    async confirmDelete() {
+      this.showloader = true;
+      await EmployeeApi.confirmDelete(this.form.id)
+        .then(() => {
+          this.showloader = false;
+          this.deleteDialog = false;
+        })
+        .catch(() => {
+          this.showloader = false;
+        });
+    },
+
+    // cancel delete
+    cancelDelete() {
+      this.deleteDialog = false;
+    },
   },
 };
 </script>

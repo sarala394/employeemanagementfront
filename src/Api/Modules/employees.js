@@ -26,4 +26,8 @@ export default {
     return await api.get("/employee/totemployees");
   },
 
+  // delete employee
+  async confirmDelete() {
+    return await api.post(`/employee/deleteemployee/${id}`);
+  },
 };
