@@ -66,7 +66,6 @@ export default {
       };
       const res = await EmployeeApi.getEmployees(payload);
       this.employees = res.data.data;
-      console.log(this.employees);
       this.loading = false;
     },
   },

@@ -143,6 +143,7 @@ export default {
   data() {
     return {
       showForm: false,
+      showEditForm:false,
       selectedItem: {},
       headers: [
         { title: "Employee Ref Id", value: "employee_ref_id" },
