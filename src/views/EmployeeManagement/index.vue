@@ -16,7 +16,7 @@
             style="background-color: #fdffff; height: 50px"
             class="elevation-3 sbox"
             clearable
-            type="text"
+            type="number"
           ></v-text-field>
         </v-col>
 
@@ -47,7 +47,7 @@ export default {
     return {
       employees: [],
       loading: false,
-      searchNumber: null,
+      searchNumber: '',
     };
   },
   components: {
