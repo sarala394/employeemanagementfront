@@ -9,7 +9,7 @@
         <!-- Search Box on the Left -->
         <v-col cols="6" sm="6" md="4">
           <v-text-field
-            v-model="searchedData"
+            v-model="searchNumber"
             placeholder="Enter phone number to search..."
             label="Search Phone Number"
             variant="none"
@@ -26,7 +26,6 @@
             rounded="xl"
             dense
             style="text-transform: capitalize; height: 45px"
-            :disabled="!isValidPhoneNumber"
             @click="getEmployees()"
           >
             Search Phone
@@ -48,7 +47,7 @@ export default {
     return {
       employees: [],
       loading: false,
-      searchedData: "",
+      searchNumber: null,
     };
   },
   components: {
@@ -63,18 +62,12 @@ export default {
     async getEmployees() {
       this.loading = true;
       const payload = {
-        search_data: this.searchedData,
+        search_data: this.searchNumber,
       };
       const res = await EmployeeApi.getEmployees(payload);
       this.employees = res.data.data;
+      console.log(this.employees);
       this.loading = false;
-    },
-  },
-
-  computed: {
-    isValidPhoneNumber() {
-      // Check if searchedData is not empty and only contains numbers
-      return this.searchedData !== "" && /^[0-9]+$/.test(this.searchedData);
     },
   },
 };
